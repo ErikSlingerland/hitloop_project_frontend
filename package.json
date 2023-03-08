@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@tonejs/midi": "^2.0.28",
+    "tone": "^14.7.77"
+  }
+}
