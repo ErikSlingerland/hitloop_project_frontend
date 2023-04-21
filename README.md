@@ -2,18 +2,23 @@
 Javascript frontend repo for the hitloop project
 
 
+## V1:
+Version where we use the API to play it with tone.js polysynth
 
-Javascript file that handles tone.js is frontend.js
+## V2:
+Javascript sequencer. API talks to sequencer. Sequencer talks to sampler to play samples.
 
-index.html is placeholder interface
-
-
-
-Currently hardcoded to make get requests to:'http://127.0.0.1:5000/
-
-Needs to be changed
+NEED TO DO:
+- Create the sequencer like how Arthur showed
+- Adjust API output to decrease unnecessary calculations
 
 
+idea for api to sequencer:
+- Each block has a specified PPQ start_point. if it is at a X% variation around it, play it. 
+- For the JSON, check when the notes (for now 4) are played and put the blocks on 'Active'
+- Loop over the sequencer. When true play the corresponding sampler. 
+
+- Add button on top to change sample to apply
 
 
 
