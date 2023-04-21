@@ -1,23 +1,12 @@
-//Run local server to test:
-//python -m http.server --bind 127.0.0.1 8000//
-
-
-
-
-
-////////////////////// Connect to API with models //////////////////////
-
 // random integer between 0 and 99
 let seed = Math.floor(Math.random() * 100)
 
 // Set template
-let template = 30
-let fetch_basis = 'http://127.0.0.1:5000/test_json'
-let start_parameters= '?seed='
-let  second_parameter='&template='
+let fetch_basis = 'https://api-hitloop.responsible-it.nl/test_1bass_json'
+let parameters= '?seed='
 
 
-let fetch_string = fetch_basis + start_parameters + seed + second_parameter + template
+let fetch_string = fetch_basis + parameters + seed
 
 fetch(fetch_string)
 .then(function(response){
@@ -30,7 +19,10 @@ fetch(fetch_string)
     //console.log(midi);
 
 
-////////////////////// Functions for tone.js //////////////////////
+
+//python -m http.server --bind 127.0.0.1 8000//
+
+
     //synth playback
     const synths = []
     document.querySelector("p").addEventListener("click",  (e) => {
