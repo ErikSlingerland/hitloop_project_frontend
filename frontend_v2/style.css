@@ -1,0 +1,13 @@
+table {
+    border-collapse: collapse;
+  }
+  
+  td {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+  }
+  
+  td.on {
+    background-color: red;
+  }
