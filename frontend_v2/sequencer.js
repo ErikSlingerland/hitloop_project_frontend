@@ -11,101 +11,96 @@ window.addEventListener('load', () => {
 	  }
 	}).toDestination();
 
-const speed = 100; // loop speed in milliseconds
-let rowIndex = 0;
-let colIndex = 0;
-let loopInterval;
+	const speed = 100; // loop speed in milliseconds
+	const loopLength = 16; // number of columns in loop
+	const numRows = 5; // number of rows in loop
+	let loopInterval;
+	let loopIndex = 0;
+	let cells = [];
 
-const note_lookup = {
-	0: 'C2',
-	1: 'D2',
-	2: 'E2',
-	3: 'F2',
-	4: 'G2'
-  };
+	const note_lookup = {
+		0: 'C2',
+		1: 'D2',
+		2: 'E2',
+		3: 'F2',
+		4: 'G2'
+	};
 
-function startLoop() {
-	loopInterval = setInterval(() => {
-		// check if current cell is on
-		const cell = document.querySelector(`table tr:nth-child(${rowIndex + 1}) td:nth-child(${colIndex + 1})`);
-		const isOn = cell.classList.contains('on');
+	function startLoop() {
+		loopInterval = setInterval(() => {
+			const notesToPlay = [];
+			for (let i = 0; i < numRows; i++) {
+				const cell = cells[i][loopIndex];
+				if (cell.classList.contains('on')) {
+					notesToPlay.push(note_lookup[i]);
+				}
+			}
+			if (notesToPlay.length > 0) {
+				console.log(`Playing notes ${notesToPlay} at loop index ${loopIndex}`);
+				sampler.triggerAttackRelease(notesToPlay, 1);
+			}
+			loopIndex++;
+			if (loopIndex >= loopLength) {
+				loopIndex = 0;
+			}
+		}, speed);
+	}
 
-		// do something based on whether cell is on or off
-		if (isOn) {
-			const note = note_lookup[rowIndex]
-			// cell is on
-			console.log(`Cell (${rowIndex}, ${colIndex}) is on`);
-			// trigger audio or other action here
-			sampler.triggerAttackRelease([note], 1);
+	function stopLoop() {
+		clearInterval(loopInterval);
+		loopIndex = 0;
+	}
 
-
+	function toggleCell(cell) {
+		cell.classList.toggle('on');
+		if (cell.classList.contains('on')) {
+			cell.setAttribute('data-state', 'on');
 		} else {
-			// cell is off
-			console.log(`Cell (${rowIndex}, ${colIndex}) is off`);
-			// do nothing
+			cell.setAttribute('data-state', 'off');
 		}
+	}
 
-		// increment column index
-		colIndex++;
-		if (colIndex >= 16) {
-			// if end of row, reset column index and move to next row
-			colIndex = 0;
-			rowIndex++;
-			if (rowIndex >= 5) {
-				// if end of grid, reset row index
-				rowIndex = 0;
+	function init() {
+		// initialize cells array
+		for (let i = 0; i < numRows; i++) {
+			cells[i] = [];
+			for (let j = 0; j < loopLength; j++) {
+				cells[i][j] = document.querySelector(`table tr:nth-child(${i + 1}) td:nth-child(${j + 1})`);
+				cells[i][j].addEventListener('click', () => {
+					toggleCell(cells[i][j]);
+				});
 			}
 		}
-	}, speed);
-}
 
-function toggleCell(cell) {
-	cell.classList.toggle('on');
-	if (cell.classList.contains('on')) {
-		cell.setAttribute('data-state', 'on');
-	} else {
-		cell.setAttribute('data-state', 'off');
-	}
-}
+		const loopBtn = document.getElementById('loop-btn');
 
-function toggleCell(cell) {
-	cell.classList.toggle('on');
-}
+		let isLooping = false;
+		loopBtn.addEventListener('click', () => {
+			if (!isLooping) {
+				startLoop();
+				loopBtn.textContent = 'Stop Loop';
+			} else {
+				stopLoop();
+				loopBtn.textContent = 'Start Loop';
+			}
+			isLooping = !isLooping;
+		});
 
-const cells = document.querySelectorAll('td');
-cells.forEach(cell => {
-	cell.addEventListener('click', () => {
-		toggleCell(cell);
-	});
-});
-
-const loopBtn = document.getElementById('loop-btn');
-
-
-let isLooping = false;
-loopBtn.addEventListener('click', () => {
-	if (!isLooping) {
-		startLoop();
-		loopBtn.textContent = 'Stop Loop';
-	} else {
-		stopLoop();
-		loopBtn.textContent = 'Start Loop';
-	}
-	isLooping = !isLooping;
-});
-
-function loadState() {
-	const cells = document.querySelectorAll('td');
-	cells.forEach(cell => {
-		const state = cell.getAttribute('data-state');
-		if (state === 'on') {
-			cell.classList.add('on');
-		} else {
-			cell.classList.remove('on');
+		function loadState() {
+			cells.forEach(row => {
+				row.forEach(cell => {
+					const state = cell.getAttribute('data-state');
+					if (state === 'on') {
+						cell.classList.add('on');
+					} else {
+						cell.classList.remove('on');
+					}
+				});
+			});
 		}
-	});
-}
 
-loadState();
+		loadState();
+	}
 
+	init();
 });
