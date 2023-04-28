@@ -3,7 +3,7 @@ window.addEventListener('load', () => {
   // Create a new Tone.js sampler
   const sampler = new Tone.Sampler({
     urls: {
-      B2: "A2.mp3",
+      A2: "A2.mp3",
     },
     baseUrl: "https://tonejs.github.io/audio/casio/",
     onload: () => {
@@ -16,6 +16,6 @@ window.addEventListener('load', () => {
 
   // Set up a function to trigger the sampler when the <button> element is clicked
   button.addEventListener("click", function() {
-    sampler.triggerAttackRelease(["B2"], 1);
+    sampler.triggerAttackRelease(["A2"], 1);
   });
 });

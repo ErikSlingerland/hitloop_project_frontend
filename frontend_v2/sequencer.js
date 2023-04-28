@@ -1,9 +1,28 @@
-document.addEventListener("DOMContentLoaded", function() {
+// Wait for the context to be initialized
+window.addEventListener('load', () => {
+	// Create a new Tone.js sampler
+	const sampler = new Tone.Sampler({
+	  urls: {
+		A2: "A2.mp3",
+	  },
+	  baseUrl: "https://tonejs.github.io/audio/casio/",
+	  onload: () => {
+		console.log("Sampler loaded");
+	  }
+	}).toDestination();
 
 const speed = 100; // loop speed in milliseconds
 let rowIndex = 0;
 let colIndex = 0;
 let loopInterval;
+
+const note_lookup = {
+	0: 'C2',
+	1: 'D2',
+	2: 'E2',
+	3: 'F2',
+	4: 'G2'
+  };
 
 function startLoop() {
 	loopInterval = setInterval(() => {
@@ -13,9 +32,13 @@ function startLoop() {
 
 		// do something based on whether cell is on or off
 		if (isOn) {
+			const note = note_lookup[rowIndex]
 			// cell is on
 			console.log(`Cell (${rowIndex}, ${colIndex}) is on`);
 			// trigger audio or other action here
+			sampler.triggerAttackRelease([note], 1);
+
+
 		} else {
 			// cell is off
 			console.log(`Cell (${rowIndex}, ${colIndex}) is off`);
