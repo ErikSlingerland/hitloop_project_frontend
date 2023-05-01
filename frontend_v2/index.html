@@ -7,105 +7,153 @@
   <script src="node_modules\tone\build\Tone.js"></script>
 </head>
 <body>
+
+  <label for="sampleselect_col0">Select a sample for col 0:</label>
+  <select id="sampleselect_col0"></select>
+
+  <label for="sampleselect_col1">Select a sample for col 1:</label>
+  <select id="sampleselect_col1"></select>
+
+  <label for="sampleselect_col2">Select a sample for col 2:</label>
+  <select id="sampleselect_col2"></select>
+
+  <label for="sampleselect_col3">Select a sample for col 3:</label>
+  <select id="sampleselect_col3"></select>
+
+  <label for="sampleselect_col4">Select a sample for col 4:</label>
+  <select id="sampleselect_col4"></select>
+
+
+  <button id="tone-btn">Restart tone.js</button>
+
+
   <button id="loop-btn">Start Loop</button>
   <table>
+    <thead>
+      <tr>
+        <th class="cell-header" data-col="0"></th>
+        <th class="cell-header" data-col="1"></th>
+        <th class="cell-header" data-col="2"></th>
+        <th class="cell-header" data-col="3"></th>
+        <th class="cell-header" data-col="4"></th>
+        <th class="cell-header" data-col="5"></th>
+        <th class="cell-header" data-col="6"></th>
+        <th class="cell-header" data-col="7"></th>
+        <th class="cell-header" data-col="8"></th>
+        <th class="cell-header" data-col="9"></th>
+        <th class="cell-header" data-col="10"></th>
+        <th class="cell-header" data-col="11"></th>
+        <th class="cell-header" data-col="12"></th>
+        <th class="cell-header" data-col="13"></th>
+        <th class="cell-header" data-col="14"></th>
+        <th class="cell-header" data-col="15"><a-row="0"/th>
+      </tr>
+    </thead>
     <tbody>
-       <!-- Row 1 -->
+      <!-- Row 1 -->
       <tr>
-        <td class="cell" data-row="0" data-col="0" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="1" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="2" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="3" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="4" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="5" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="6" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="7" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="8" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="9" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="10" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="11" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="12" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="13" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="14" data-note="A2"></td>
-        <td class="cell" data-row="0" data-col="15" data-note="A2"></td>
-      <tr>
+        <td class="cell" data-row="0" data-col="0"></td>
+        <td class="cell" data-row="0" data-col="1"></td>
+        <td class="cell" data-row="0" data-col="2"></td>
+        <td class="cell" data-row="0" data-col="3"></td>
+        <td class="cell" data-row="0" data-col="4"></td>
+        <td class="cell" data-row="0" data-col="5"></td>
+        <td class="cell" data-row="0" data-col="6"></td>
+        <td class="cell" data-row="0" data-col="7"></td>
+        <td class="cell" data-row="0" data-col="8"></td>
+        <td class="cell" data-row="0" data-col="9"></td>
+        <td class="cell" data-row="0" data-col="10"></td>
+        <td class="cell" data-row="0" data-col="11"></td>
+        <td class="cell" data-row="0" data-col="12"></td>
+        <td class="cell" data-row="0" data-col="13"></td>
+        <td class="cell" data-row="0" data-col="14"></td>
+        <td class="cell" data-row="0" data-col="15"></td>
+      </tr>
       <!-- Row 2 -->
-			<tr>
-        <td class="cell" data-row="1" data-col="0" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="1" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="2" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="3" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="4" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="5" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="6" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="7" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="8" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="9" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="10" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="11" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="12" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="13" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="14" data-note="B2"></td>
-        <td class="cell" data-row="1" data-col="15" data-note="B2"></td>
-			</tr>
-            <!-- Row 3 -->
-			<tr>
-        <td class="cell" data-row="2" data-col="0" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="1" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="2" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="3" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="4" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="5" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="6" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="7" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="8" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="9" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="10" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="11" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="12" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="13" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="14" data-note="C2"></td>
-        <td class="cell" data-row="2" data-col="15" data-note="C2"></td>
-			</tr>
-            <!-- Row 4 -->
-			<tr>
-        <td class="cell" data-row="3" data-col="0" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="1" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="2" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="3" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="4" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="5" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="6" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="7" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="8" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="9" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="10" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="11" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="12" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="13" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="14" data-note="D2"></td>
-        <td class="cell" data-row="3" data-col="15" data-note="D2"></td>
-			</tr>
-            <!-- Row 5 -->
-			<tr>
-        <td class="cell" data-row="4" data-col="0" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="1" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="2" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="3" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="4" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="5" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="6" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="7" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="8" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="9" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="10" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="11" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="12" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="13" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="14" data-note="E2"></td>
-        <td class="cell" data-row="4" data-col="15" data-note="E2"></td>
-			</tr>
-		</tbody>
-	</table>
+      <tr>
+        <td class="cell" data-row="1" data-col="0"></td>
+        <td class="cell" data-row="1" data-col="1"></td>
+        <td class="cell" data-row="1" data-col="2"></td>
+        <td class="cell" data-row="1" data-col="3"></td>
+        <td class="cell" data-row="1" data-col="4"></td>
+        <td class="cell" data-row="1" data-col="5"></td>
+        <td class="cell" data-row="1" data-col="6"></td>
+        <td class="cell" data-row="1" data-col="7"></td>
+        <td class="cell" data-row="1" data-col="8"></td>
+        <td class="cell" data-row="1" data-col="9"></td>
+        <td class="cell" data-row="1" data-col="10"></td>
+        <td class="cell" data-row="1" data-col="11"></td>
+        <td class="cell" data-row="1" data-col="12"></td>
+        <td class="cell" data-row="1" data-col="13"></td>
+        <td class="cell" data-row="1" data-col="14"></td>
+        <td class="cell" data-row="1" data-col="15"></td>
+      </tr>
+
+
+      <!-- Row 3 -->
+      <tr>
+        <td class="cell" data-row="2" data-col="0"></td>
+        <td class="cell" data-row="2" data-col="1"></td>
+        <td class="cell" data-row="2" data-col="2"></td>
+        <td class="cell" data-row="2" data-col="3"></td>
+        <td class="cell" data-row="2" data-col="4"></td>
+        <td class="cell" data-row="2" data-col="5"></td>
+        <td class="cell" data-row="2" data-col="6"></td>
+        <td class="cell" data-row="2" data-col="7"></td>
+        <td class="cell" data-row="2" data-col="8"></td>
+        <td class="cell" data-row="2" data-col="9"></td>
+        <td class="cell" data-row="2" data-col="10"></td>
+        <td class="cell" data-row="2" data-col="11"></td>
+        <td class="cell" data-row="2" data-col="12"></td>
+        <td class="cell" data-row="2" data-col="13"></td>
+        <td class="cell" data-row="2" data-col="14"></td>
+        <td class="cell" data-row="2" data-col="15"></td>
+      </tr>   
+
+      <!-- Row 4 -->
+      <tr>
+        <td class="cell" data-row="3" data-col="0"></td>
+        <td class="cell" data-row="3" data-col="1"></td>
+        <td class="cell" data-row="3" data-col="2"></td>
+        <td class="cell" data-row="3" data-col="3"></td>
+        <td class="cell" data-row="3" data-col="4"></td>
+        <td class="cell" data-row="3" data-col="5"></td>
+        <td class="cell" data-row="3" data-col="6"></td>
+        <td class="cell" data-row="3" data-col="7"></td>
+        <td class="cell" data-row="3" data-col="8"></td>
+        <td class="cell" data-row="3" data-col="9"></td>
+        <td class="cell" data-row="3" data-col="10"></td>
+        <td class="cell" data-row="3" data-col="11"></td>
+        <td class="cell" data-row="3" data-col="12"></td>
+        <td class="cell" data-row="3" data-col="13"></td>
+        <td class="cell" data-row="3" data-col="14"></td>
+        <td class="cell" data-row="3" data-col="15"></td>
+      </tr>     
+      
+      <!-- Row 5 -->
+      <tr>
+        <td class="cell" data-row="4" data-col="0"></td>
+        <td class="cell" data-row="4" data-col="1"></td>
+        <td class="cell" data-row="4" data-col="2"></td>
+        <td class="cell" data-row="4" data-col="3"></td>
+        <td class="cell" data-row="4" data-col="4"></td>
+        <td class="cell" data-row="4" data-col="5"></td>
+        <td class="cell" data-row="4" data-col="6"></td>
+        <td class="cell" data-row="4" data-col="7"></td>
+        <td class="cell" data-row="4" data-col="8"></td>
+        <td class="cell" data-row="4" data-col="9"></td>
+        <td class="cell" data-row="4" data-col="10"></td>
+        <td class="cell" data-row="4" data-col="11"></td>
+        <td class="cell" data-row="4" data-col="12"></td>
+        <td class="cell" data-row="4" data-col="13"></td>
+        <td class="cell" data-row="4" data-col="14"></td>
+        <td class="cell" data-row="4" data-col="15"></td>
+      </tr>  
+    </tbody>
+  </table>
+  <div>
+    <label for="tempo-input">Tempo (BPM):</label>
+    <input type="number" id="tempo-input" value="120" min="20" max="300">
+  </div>
 </body>
 </html>

@@ -3,12 +3,12 @@ let seed = Math.floor(Math.random() * 100)
 
 // Set template
 let fetch_basis = 'https://api-hitloop.responsible-it.nl/test_1bass_json'
-let parameters= '?seed='
+let midi_parameters= '?seed='
 
 
-let fetch_string = fetch_basis + parameters + seed
+let midi_fetch_string = fetch_basis + midi_parameters + seed
 
-fetch(fetch_string)
+fetch(midi_fetch_string)
 .then(function(response){
     if(!response.ok){
         throw new Error('network response was not ok');
