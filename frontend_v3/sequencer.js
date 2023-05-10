@@ -231,6 +231,9 @@ sampleSelect_col4.addEventListener('change', (event) => {
 
 
 
+
+
+
    // Initialize the sampler when tonebtn is pressed
   tonebtn.addEventListener('click', function () {
 	sampler = new Tone.Sampler({
@@ -306,4 +309,23 @@ sampleSelect_col4.addEventListener('change', (event) => {
 		toggleCell(event);
 	  });
 	});
+
+
+
+// Function for clearing all on cells in the sequencer
+function removeOnClass(numRows, numCols) {
+	for (let row = 0; row <= numRows; row++) {
+	  for (let col = 0; col <= numCols; col++) {
+		const cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+		if (cell.classList.contains('on')) {
+		  cell.classList.remove('on');
+		}
+	  }
+	}
+  }
+  
+  clear_sequencer.addEventListener('click', function() {
+	removeOnClass(4, 15);
+});
+
 });
