@@ -16,6 +16,10 @@ body {
   background-color: #191919;
 }
 
+h1 {
+  /* text-align: center; */
+}
+
 .bpm {
   display: flex;
 }
@@ -124,7 +128,6 @@ table {
   td {
     width: 30px;
     height: 30px;
-    border: 1px solid black;
   }
   
   td.on {
@@ -132,5 +135,8 @@ table {
   }
 
   .cell {
-    border: 1px solid white;
+    background-color: #ffffff25;
   }
+    .cell:hover {
+      background-color: #ffffff40;
+    }
