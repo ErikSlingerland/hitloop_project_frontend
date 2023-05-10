@@ -7,6 +7,10 @@
   <script src="node_modules\tone\build\Tone.js"></script>
 </head>
 <body>
+  <div id="bpm">
+    <label for="tempo-input">Tempo (BPM):</label>
+    <input type="number" id="tempo-input" value="120" min="20" max="300">
+  </div>
 
   <main>
     <nav>
@@ -152,12 +156,10 @@
   </main>
 
   <div>
-    <button id="tone-btn">Restart tone.js</button>
+    <button id="tone-btn">Update sounds</button>
 
-    <label for="tempo-input">Tempo (BPM):</label>
-    <input type="number" id="tempo-input" value="120" min="20" max="300">
-
-    <button id="loop-btn">Start Loop</button>
+    <button id="clear_sequencer" class="btn-neg">Clear all</button>
+    <button id="loop-btn" class="btn-pos">Start Loop</button>
   </div>
 </body>
 </html>

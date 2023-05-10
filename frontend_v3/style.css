@@ -16,6 +16,10 @@ body {
   background-color: #191919;
 }
 
+.bpm {
+  display: flex;
+}
+
 main {
   display: flex;
   flex-direction: row;
@@ -26,6 +30,7 @@ nav {
   display: grid;
   grid-template-columns: 2fr 1fr;
   width: fit-content;
+  padding-top: 24px;
 }
 
 nav label {
@@ -38,10 +43,46 @@ select {
   width: fit-content;
 }
 
-table {
-    border-collapse: collapse;
+button {
+  padding: 8px 16px;
+  border: none;
+  box-shadow: 0 4px gray;
+  border-radius: 4px;
+}
+  .btn-neg {
+    background-color: #f08787;
+    box-shadow: 0 4px #a04949;
+  }
+  .btn-pos {
+    background-color: #7bbb7b;
+    box-shadow: 0 4px #468846;
   }
 
+
+input {
+  padding: 8px 16px;
+  box-shadow: inset 0px 0px 4px #000000;
+  border: none;
+  width: fit-content;
+}
+
+table {
+    /* border-collapse: collapse; */
+  }
+
+  th {
+    background: conic-gradient(from 33.69deg at 50.72% 73.91%, rgba(96, 96, 96, 0) 0deg, rgba(0, 0, 0, 0) 291.81deg, #606060 291.82deg, #606060 360deg);
+    height: 20px;
+    width: 10px;
+  }
+
+  th:nth-of-type(4n) {
+    background: conic-gradient(from 33.69deg at 50.72% 73.91%, rgba(96, 96, 96, 0) 0deg, rgba(0, 0, 0, 0) 291.81deg, #ffffff 291.82deg, #ffffff 360deg);
+    height: 20px;
+    width: 10px;
+  }
+
+  /* Table row colors */
   tr:nth-of-type(1) td.on {
     background-color: #011DDB;
   }
