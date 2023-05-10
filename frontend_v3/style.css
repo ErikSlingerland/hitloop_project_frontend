@@ -73,6 +73,19 @@ button {
       background-color: #a04949;
       box-shadow: 0 0 #a04949;
     }
+
+  .btn-med {
+    background-color: #f69323;
+    box-shadow: 0 4px #d07813;
+  }
+    .btn-med:hover {
+      background-color: #d7811f;
+    }
+    .btn-med:active {
+      background-color: #d07813;
+      box-shadow: 0 0 #d07813;
+    }
+
   .btn-pos {
     background-color: #7bbb7b;
     box-shadow: 0 4px #468846;
@@ -123,6 +136,15 @@ table {
   }
   tr:nth-of-type(5) td.on {
     background-color: #01D440;
+  }
+  tr:nth-of-type(6) td.on {
+    background-color: #a9e126;
+  }
+  tr:nth-of-type(7) td.on {
+    background-color: #e4e125;
+  }
+  tr:nth-of-type(8) td.on {
+    background-color: #fcbc19;
   }
   
   td {
