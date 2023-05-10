@@ -28,7 +28,7 @@ main {
 
 nav {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   width: fit-content;
   padding-top: 24px;
 }
@@ -46,17 +46,41 @@ select {
 button {
   padding: 8px 16px;
   border: none;
+  background-color: #efefef;
   box-shadow: 0 4px gray;
   border-radius: 4px;
 }
+  button:hover {
+    background-color: #c5c5c5;
+  }
+  button:active {
+    background-color: gray;
+    box-shadow: 0 0 gray;
+  }
+
   .btn-neg {
     background-color: #f08787;
     box-shadow: 0 4px #a04949;
   }
+    .btn-neg:hover {
+      background-color: #c26a6a;
+    }
+    .btn-neg:active {
+      background-color: #a04949;
+      box-shadow: 0 0 #a04949;
+    }
   .btn-pos {
     background-color: #7bbb7b;
     box-shadow: 0 4px #468846;
   }
+    .btn-pos:hover {
+      background-color: #569656;
+    }
+    .btn-pos:active {
+      background-color: #468846;
+      box-shadow: 0 0 #468846;
+    }
+  
 
 
 input {
