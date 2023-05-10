@@ -1,0 +1,9 @@
+#sequencer td {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+  }
+  
+  #sequencer td.active {
+    background-color: red;
+  }
