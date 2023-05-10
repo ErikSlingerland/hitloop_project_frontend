@@ -187,6 +187,7 @@ sampleSelect_col4.addEventListener('change', (event) => {
 	const cells = document.querySelectorAll('.cell');
 	const tonebtn = document.getElementById('tone-btn');
 	let sampler;
+	let isLoopPlaying = false;
 
 	const numRows = 5;
 	const numCols = 16;
@@ -259,49 +260,89 @@ sampleSelect_col4.addEventListener('change', (event) => {
 	  }
 	}
 
-	// Define function for playing all cells that are on in a column
-	function playStep(col) {
+	// // Define function for playing all cells that are on in a column
+	// function playStep(col) {
+	// 	const playedNotes = {};
+	// 	for (let row = 0; row < numRows; row++) {
+	// 	  const cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+	// 	  console.log(`Checking cell [${row}, ${col}]. Cell is ${cell.classList.contains('on') ? 'on' : 'off'}.`);
+	// 	  if (cell && cell.classList.contains('on')) {
+	// 		const note = notes[row];
+	// 		if (!playedNotes[note]) {
+	// 			sampler.triggerAttackRelease(note, noteLength);
+	// 		  playedNotes[note] = true;
+	// 		}
+	// 	  }
+	// 	}
+	//   }
+
+	  function playStep(col) {
 		const playedNotes = {};
+		
+		// Remove 'current' class from all header elements
+		const headerElements = document.querySelectorAll('.cell-header');
+		headerElements.forEach((header) => {
+		  header.classList.remove('current');
+		});
+	  
+		// Set the 'current' class for the header element corresponding to the given column
+		const currentHeader = document.querySelector(`.cell-header[data-col="${col}"]`);
+		if (currentHeader) {
+		  currentHeader.classList.add('current');
+		}
+		
 		for (let row = 0; row < numRows; row++) {
 		  const cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
 		  console.log(`Checking cell [${row}, ${col}]. Cell is ${cell.classList.contains('on') ? 'on' : 'off'}.`);
 		  if (cell && cell.classList.contains('on')) {
 			const note = notes[row];
 			if (!playedNotes[note]) {
-				sampler.triggerAttackRelease(note, noteLength);
+			  sampler.triggerAttackRelease(note, noteLength);
 			  playedNotes[note] = true;
 			}
 		  }
 		}
 	  }
 
-	   // Define function for playing a loop
-	  function playLoop() {
-		Tone.Transport.scheduleRepeat(function (time) {
-		  for (let col = 0; col < numCols; col++) {
-			setTimeout(function () {
-			  playStep(col);
-			  // Remove the highlight from the current column
-			  const currentCol = document.querySelector(`.cell-header[data-col="${col}"]`);
-			  currentCol.classList.remove('active');
-	  
-			  // Highlight the next column
-			  const nextCol = document.querySelector(`.cell-header[data-col="${(col+1)%numCols}"]`);
-			  nextCol.classList.add('active');
-			}, columnTime * col);
+
+
+// Define function for playing a loop
+function playLoop() {
+	Tone.Transport.scheduleRepeat(function (time) {
+	  for (let col = 0; col < numCols; col++) {
+		setTimeout(function () {
+		  if (isLoopPlaying) { // Check if isLoopPlaying is true
+			playStep(col);
 		  }
-		}, columnTime * numCols);
-		
-		// Set the loopEnd to repeat indefinitely
-		Tone.Transport.loopEnd = numCols + 'm';
-		Tone.Transport.start();
-		Tone.Transport.loop = true;
+		}, columnTime * col);
 	  }
+	}, columnTime * numCols);
+  
+	// Set the loopEnd to repeat indefinitely
+	Tone.Transport.loopEnd = numCols + 'm';
+	Tone.Transport.start();
+	Tone.Transport.loop = true;
+  }
+		
+
 
 	
 	loopBtn.addEventListener('click', function () {
-		Tone.start(); 
-	  playLoop();
+		if (loopBtn.classList.contains('btn-pos')) {
+			loopBtn.classList.remove('btn-pos');
+			loopBtn.classList.add('btn-med');
+			loopBtn.textContent = 'Stop Loop';
+			Tone.start();
+			isLoopPlaying = true;
+			playLoop();
+		}
+		 else if (loopBtn.classList.contains('btn-med')) {
+			loopBtn.classList.remove('btn-med');
+			loopBtn.classList.add('btn-pos');
+			loopBtn.textContent = 'Start Loop';
+			isLoopPlaying = false;
+			Tone.Transport.stop()
+		}
 	});
 	
 	cells.forEach(function (cell) {
@@ -327,5 +368,8 @@ function removeOnClass(numRows, numCols) {
   clear_sequencer.addEventListener('click', function() {
 	removeOnClass(4, 15);
 });
+
+
+
 
 });
