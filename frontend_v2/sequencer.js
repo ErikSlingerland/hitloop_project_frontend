@@ -4,7 +4,7 @@ let sample_url = Url+'samples?file='
 window.addEventListener('load', function () {
 
 
-///////////////// Pipeline for selecting
+///////////////// Pipeline for selecting samples/////////////////////////
 // Create selection pipelines for each column (0-4)
 
 // Create col0 selection
@@ -13,6 +13,12 @@ fetch(sample_list_url)
 .then(response => response.json())
 .then(data => {
   const samples = data.files;
+ 	  // Add empty option at start
+	   const option = document.createElement('option');
+	   option.value = '';
+	   option.textContent = '';
+	   sampleSelect_col0.appendChild(option);
+	   // Create new option for each sample 
   samples.forEach(sample => {
 	const option = document.createElement('option');
 	option.value = sample;
@@ -37,6 +43,12 @@ fetch(sample_list_url)
 .then(response => response.json())
 .then(data => {
   const samples = data.files;
+ 	   // Add empty option at start
+		const option = document.createElement('option');
+		option.value = '';
+		option.textContent = '';
+		sampleSelect_col1.appendChild(option);
+		// Create new option for each sample  
   samples.forEach(sample => {
 	const option = document.createElement('option');
 	option.value = sample;
@@ -64,8 +76,14 @@ fetch(sample_list_url)
 .then(response => response.json())
 .then(data => {
   const samples = data.files;
-  samples.forEach(sample => {
+    // Add empty option at start
 	const option = document.createElement('option');
+	option.value = '';
+	option.textContent = '';
+	sampleSelect_col2.appendChild(option);
+	// Create new option for each sample 
+  samples.forEach(sample => {
+	const option = document.createElement('option'); 	
 	option.value = sample;
 	option.textContent = sample;
 	sampleSelect_col2.appendChild(option);
@@ -87,12 +105,18 @@ sampleSelect_col2.addEventListener('change', (event) => {
 
 
 
-// Create col1 selection
+// Create col3 selection
 const sampleSelect_col3 = document.getElementById('sampleselect_col3');
 fetch(sample_list_url)
 .then(response => response.json())
 .then(data => {
   const samples = data.files;
+   // Add empty option at start
+   const option = document.createElement('option');
+   option.value = '';
+   option.textContent = '';
+   sampleSelect_col3.appendChild(option);
+   // Create new option for each sample 
   samples.forEach(sample => {
 	const option = document.createElement('option');
 	option.value = sample;
@@ -122,6 +146,12 @@ fetch(sample_list_url)
 .then(response => response.json())
 .then(data => {
   const samples = data.files;
+   // Add empty option at start
+   const option = document.createElement('option');
+   option.value = '';
+   option.textContent = '';
+   sampleSelect_col4.appendChild(option);
+   // Create new option for each sample 
   samples.forEach(sample => {
 	const option = document.createElement('option');
 	option.value = sample;
@@ -147,15 +177,10 @@ sampleSelect_col4.addEventListener('change', (event) => {
 
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-
-
-
-
-
-
+///////////////////////Sequencer pipeline//////////////////////////////
 
 	// Global Variables
 	const loopBtn = document.getElementById('loop-btn');
@@ -172,11 +197,12 @@ sampleSelect_col4.addEventListener('change', (event) => {
 	// Decides how long a note can take
 	const noteLength = '8n';
 
-	// Sets the seed
-	// let seed = Math.floor(Math.random() * 100)
-	seed = 120 
+	// Sets the seed to 1,2,3
+	let seed = Math.floor(Math.random() * 4)
+	//Static seed
+	// seed = 120 
 
-	// Decides how long to wait between the grid
+	// Uses input BPM to calculate wait-time between columns
 	columnTime = (60 / parseFloat(document.getElementById('tempo-input').value)) * 1000;
 	const tempoInput = document.getElementById('tempo-input');
 	tempoInput.addEventListener('input', function () {
@@ -205,7 +231,7 @@ sampleSelect_col4.addEventListener('change', (event) => {
 
 
 
-
+   // Initialize the sampler when tonebtn is pressed
   tonebtn.addEventListener('click', function () {
 	sampler = new Tone.Sampler({
 		urls: {
@@ -221,7 +247,7 @@ sampleSelect_col4.addEventListener('change', (event) => {
 	  }).toDestination();
 });
 	
-	// Define functions
+	// Define function to turn cell on/off
 	function toggleCell(event) {
 	  if (event.target.classList.contains('on')) {
 		event.target.classList.remove('on');
@@ -229,7 +255,8 @@ sampleSelect_col4.addEventListener('change', (event) => {
 		event.target.classList.add('on');
 	  }
 	}
-	
+
+	// Define function for playing all cells that are on in a column
 	function playStep(col) {
 		const playedNotes = {};
 		for (let row = 0; row < numRows; row++) {
@@ -244,7 +271,8 @@ sampleSelect_col4.addEventListener('change', (event) => {
 		  }
 		}
 	  }
-	
+
+	   // Define function for playing a loop
 	  function playLoop() {
 		Tone.Transport.scheduleRepeat(function (time) {
 		  for (let col = 0; col < numCols; col++) {
