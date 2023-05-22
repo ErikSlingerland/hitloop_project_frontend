@@ -1,6 +1,22 @@
 const Url = 'https://api-hitloop.responsible-it.nl/'
-let sample_list_url = Url + 'samples_list'
-let sample_url = Url+'samples?file='
+let sample_list_url = ' f'
+let sample_url = ' f'
+const urlParams = new URLSearchParams(window.location.search);
+
+
+if (urlParams.has("A")) {
+sample_list_url = Url + 'samples_test_list?sample_pack=a'
+sample_url = Url+'test_samples?sample_pack=a&file='
+}
+else if (urlParams.has("B")) {
+	sample_list_url = Url + 'samples_test_list?sample_pack=b'
+	sample_url = Url+'test_samples?sample_pack=a&file='
+  }
+else{
+sample_list_url = Url + 'samples_list'
+sample_url = Url+'samples?file='
+}
+
 window.addEventListener('load', function () {
 
 
@@ -199,7 +215,7 @@ sampleSelect_col4.addEventListener('change', (event) => {
 	const noteLength = '8n';
 
 	// Sets the seed to 1,2,3
-	let seed = Math.floor(Math.random() * 4)
+	let seed = Math.floor(Math.random() * 10)
 	//Static seed
 	// seed = 120 
 
@@ -212,7 +228,15 @@ sampleSelect_col4.addEventListener('change', (event) => {
 	});
 
 	// Initialize the MIDI data from sequencer_json
-	let fetchUrl = Url + 'sequencer_json' + '?seed=' + seed
+	let fetchUrl = ' '
+
+	if (urlParams.has("A")) {
+		fetchUrl = Url + 'sequencer_random_json' + '?seed=' + seed
+		}
+		else{
+			fetchUrl = Url + 'sequencer_json' + '?seed=' + seed
+		}
+
 	fetch(fetchUrl)
   .then(response => response.json())
   .then(data => {
