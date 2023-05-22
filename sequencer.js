@@ -332,18 +332,20 @@ sampleSelect_col4.addEventListener('change', (event) => {
 
 // Define function for playing a loop
 function playLoop() {
-	Tone.Transport.scheduleRepeat(function (time) {
-	  for (let col = 0; col < numCols; col++) {
-		setTimeout(function () {
-		  if (isLoopPlaying) { // Check if isLoopPlaying is true
+	let col = 0; // Initialize the column index
+	const intervalId = setInterval(function() {
+		if (isLoopPlaying) { // Check if isLoopPlaying is true
 			playStep(col);
-		  }
-		}, columnTime * col);
-	  }
-	}, columnTime * numCols);
-  
+		}
+		col++; // Increment the column index
+
+		if (col === numCols) {
+			col = 0; // Reset the index to 0
+		}
+	}, columnTime);
+
 	// Set the loopEnd to repeat indefinitely
-	Tone.Transport.loopEnd = numCols + 'm';
+	Tone.Transport.loopEnd = numCols - 1;
 	Tone.Transport.start();
 	Tone.Transport.loop = true;
   }
