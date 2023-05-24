@@ -62,6 +62,10 @@ button {
     box-shadow: 0 0 gray;
   }
 
+  .hidden-button {
+    display: none;
+  }
+  
   .btn-neg {
     background-color: #f08787;
     box-shadow: 0 4px #a04949;
