@@ -10,7 +10,7 @@ sample_url = Url+'test_samples?sample_pack=a&file='
 }
 else if (urlParams.has("B")) {
 	sample_list_url = Url + 'samples_test_list?sample_pack=b'
-	sample_url = Url+'test_samples?sample_pack=a&file='
+	sample_url = Url+'test_samples?sample_pack=b&file='
   }
 else{
 sample_list_url = Url + 'samples_list'
