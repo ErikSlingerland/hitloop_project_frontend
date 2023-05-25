@@ -41,6 +41,16 @@ let selectedValue4
 let sampler
 let audio
 
+// Function to update the sampler with a new sample
+function updateSampler(selectedValue, sampleURL) {
+  // Remove the existing sample
+  sampler.releaseAll();
+
+  // Add the new sample
+  sampler.add(selectedValue, sampleURL);
+}
+
+
 
 ////////  Create selection pipelines for each column (0-4)  ////////
 // Create col0 selection
@@ -80,6 +90,11 @@ sampleSelect_col0.addEventListener('change', (event) => {
   // Play the audio
   audio.play();
   console.log(selectedValue0);
+  // Update the sampler with the new sample
+  let newSampleURL = sample_url + selectedValue0;
+  updateSampler("G2", newSampleURL);
+
+
 });
 
 
@@ -121,6 +136,9 @@ sampleSelect_col1.addEventListener('change', (event) => {
   // Play the audio
   audio.play();
   console.log(selectedValue1);
+  let newSampleURL = sample_url + selectedValue1;
+  updateSampler("F2", newSampleURL);
+
 });
 
 
@@ -162,6 +180,8 @@ sampleSelect_col2.addEventListener('change', (event) => {1
   // Play the audio
   audio.play();
   console.log(selectedValue2);
+  let newSampleURL = sample_url + selectedValue2;
+  updateSampler("E2", newSampleURL);
 });
 
 
@@ -202,6 +222,8 @@ sampleSelect_col3.addEventListener('change', (event) => {
   // Play the audio
   audio.play();
   console.log(selectedValue3);
+  let newSampleURL = sample_url + selectedValue3;
+  updateSampler("D2", newSampleURL);
 });
 
 
@@ -243,6 +265,8 @@ sampleSelect_col4.addEventListener('change', (event) => {
   // Play the audio
   audio.play();
   console.log(selectedValue4);
+  let newSampleURL = sample_url + selectedValue4;
+  updateSampler("C2", newSampleURL);
 });
 
 
@@ -263,7 +287,7 @@ sampleSelect_col4.addEventListener('change', (event) => {
 		}
 	  }).toDestination();
 	// change the tonebtn text to 'update samples'
-	tonebtn.textContent = 'Update Samples';
+  tonebtn.classList.add('hidden-button');
 
 	loopBtn.classList.remove('hidden-button');
 	loopBtn.classList.add('btn-pos');
